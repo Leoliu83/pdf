@@ -744,7 +744,7 @@ func (p Page) GetTextByRow() (result Rows, err error) {
 	}
 
 	sort.Slice(result, func(i, j int) bool {
-		return result[i].Position > result[j].Position
+		return result[i].Position < result[j].Position
 	})
 
 	return result, err

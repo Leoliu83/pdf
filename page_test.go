@@ -1,6 +1,8 @@
 package pdf
 
 import (
+	"bytes"
+	"fmt"
 	"reflect"
 	"sort"
 	"testing"
@@ -212,5 +214,27 @@ func TestBuildOutline(t *testing.T) {
 	}
 	if !reflect.DeepEqual(got, want) {
 		t.Fatalf("buildOutline = %+v, want %+v", got, want)
+	}
+}
+
+func TestGetTextByRow(t *testing.T) {
+	f, r, err := Open("/mnt/hgfs/mysql-refman-8.4-en.pdf")
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer f.Close()
+	p := r.Page(2)
+	var buf bytes.Buffer
+	rows, err := p.GetTextByRow()
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, row := range rows {
+		buf.Reset()
+		for _, word := range row.Content {
+			buf.WriteString(word.S)
+		}
+		fmt.Println(buf.String())
+
 	}
 }
