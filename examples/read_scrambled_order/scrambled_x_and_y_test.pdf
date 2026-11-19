@@ -1,0 +1,62 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [5 0 R 7 0 R] /Count 2 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+4 0 obj
+<< /Length 664 >>
+stream
+BT /F1 12 Tf 1 0 0 1 430 650 Tm (R2C3_Right) Tj ET
+BT /F1 12 Tf 1 0 0 1 250 700 Tm (R1C2_Middle) Tj ET
+BT /F1 12 Tf 1 0 0 1 70 600 Tm (R3C1_Left) Tj ET
+BT /F1 12 Tf 1 0 0 1 430 700 Tm (R1C3_Right) Tj ET
+BT /F1 12 Tf 1 0 0 1 250 600 Tm (R3C2_Middle) Tj ET
+BT /F1 12 Tf 1 0 0 1 70 650 Tm (R2C1_Left) Tj ET
+BT /F1 12 Tf 1 0 0 1 70 700 Tm (R1C1_Left) Tj ET
+BT /F1 12 Tf 1 0 0 1 430 600 Tm (R3C3_Right) Tj ET
+BT /F1 12 Tf 1 0 0 1 250 650 Tm (R2C2_Middle) Tj ET
+BT /F1 12 Tf 1 0 0 1 150 540 Tm (E) Tj ET
+BT /F1 12 Tf 1 0 0 1 90 540 Tm (B) Tj ET
+BT /F1 12 Tf 1 0 0 1 130 540 Tm (D) Tj ET
+BT /F1 12 Tf 1 0 0 1 70 540 Tm (A) Tj ET
+BT /F1 12 Tf 1 0 0 1 110 540 Tm (C) Tj ET
+endstream
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 4 0 R >>
+endobj
+6 0 obj
+<< /Length 319 >>
+stream
+1 0 0 -1 0 792 cm
+BT /F1 12 Tf 1 0 0 -1 440 92 Tm (F_R1_Col3) Tj ET
+BT /F1 12 Tf 1 0 0 -1 260 142 Tm (F_R2_Col2) Tj ET
+BT /F1 12 Tf 1 0 0 -1 70 92 Tm (F_R1_Col1) Tj ET
+BT /F1 12 Tf 1 0 0 -1 440 142 Tm (F_R2_Col3) Tj ET
+BT /F1 12 Tf 1 0 0 -1 70 142 Tm (F_R2_Col1) Tj ET
+BT /F1 12 Tf 1 0 0 -1 260 92 Tm (F_R1_Col2) Tj ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 6 0 R >>
+endobj
+xref
+0 8
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000121 00000 n 
+0000000191 00000 n 
+0000000905 00000 n 
+0000001031 00000 n 
+0000001400 00000 n 
+trailer
+<< /Size 8 /Root 1 0 R >>
+startxref
+1526
+%%EOF

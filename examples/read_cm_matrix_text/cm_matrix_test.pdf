@@ -1,0 +1,94 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R 5 0 R 7 0 R] /Count 3 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 9 0 R >> >> /Contents 4 0 R >>
+endobj
+4 0 obj
+<< /Length 181 >>
+stream
+BT
+/F1 14 Tf
+1 0 0 1 72 700 Tm
+(Page 1 - Line 1: Top at Y=700) Tj
+1 0 0 1 72 650 Tm
+(Page 1 - Line 2: Middle at Y=650) Tj
+1 0 0 1 72 600 Tm
+(Page 1 - Line 3: Bottom at Y=600) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 9 0 R >> >> /Contents 6 0 R >>
+endobj
+6 0 obj
+<< /Length 230 >>
+stream
+q
+1 0 0 -1 0 792 cm
+BT
+/F1 14 Tf
+1 0 0 -1 72 100 Tm
+(Page 2 - Line 1: Top at Y=100 with cm) Tj
+1 0 0 -1 72 150 Tm
+(Page 2 - Line 2: Middle at Y=150 with cm) Tj
+1 0 0 -1 72 200 Tm
+(Page 2 - Line 3: Bottom at Y=200 with cm) Tj
+ET
+Q
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 9 0 R >> >> /Contents 8 0 R >>
+endobj
+8 0 obj
+<< /Length 429 >>
+stream
+BT
+/F1 14 Tf
+1 0 0 1 72 700 Tm
+(Page 3 - Line 1: Standard Top Y=700) Tj
+1 0 0 1 72 660 Tm
+(Page 3 - Line 2: Standard Upper-Mid Y=660) Tj
+ET
+q
+1 0 0 -1 0 792 cm
+BT
+/F1 14 Tf
+1 0 0 -1 72 200 Tm
+(Page 3 - Line 3: Flipped CTM Mid-Upper userY=200 devY=592) Tj
+1 0 0 -1 72 240 Tm
+(Page 3 - Line 4: Flipped CTM Mid-Lower userY=240 devY=552) Tj
+ET
+Q
+BT
+/F1 14 Tf
+1 0 0 1 72 450 Tm
+(Page 3 - Line 5: Restored Standard Bottom Y=450) Tj
+ET
+endstream
+endobj
+9 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 10
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000127 00000 n 
+0000000253 00000 n 
+0000000484 00000 n 
+0000000610 00000 n 
+0000000890 00000 n 
+0000001016 00000 n 
+0000001495 00000 n 
+trailer
+<< /Size 10 /Root 1 0 R >>
+startxref
+1565
+%%EOF

@@ -3,6 +3,7 @@ package pdf
 import (
 	"bytes"
 	"fmt"
+	"log"
 	"reflect"
 	"sort"
 	"testing"
@@ -218,23 +219,51 @@ func TestBuildOutline(t *testing.T) {
 }
 
 func TestGetTextByRow(t *testing.T) {
-	f, r, err := Open("/mnt/hgfs/mysql-refman-8.4-en.pdf")
+	log.SetFlags(log.Lshortfile)
+	DebugOn = true
+	// f, r, err := Open("./examples/read_plain_text/pdf_test.pdf")
+	// f, r, err := Open("./examples/read_cm_matrix_text/cm_matrix_test.pdf")
+	// f, r, err := Open("./examples/read_cm_matrix_text/cm_matrix_cn_v2_test.pdf")
+	// f, r, err := Open("./examples/read_text_with_styles/pdf_test.pdf")
+	// f, r, err := Open("./examples/read_scrambled_order/scrambled_order_test.pdf")
+	f, r, err := Open("./examples/read_scrambled_order/scrambled_x_and_y_test.pdf")
 	if err != nil {
 		t.Fatal(err)
 	}
 	defer f.Close()
+	// p := r.Page(31)
 	p := r.Page(2)
 	var buf bytes.Buffer
-	rows, err := p.GetTextByRow()
-	if err != nil {
-		t.Fatal(err)
+
+	fmt.Println("************************ RowBuilder() *****************************")
+
+	builder := NewRowBuilder()
+	p.WalkTextBlocks(builder)
+	for _, block := range builder.Build() {
+		buf.Reset()
+		for _, word := range block.Content {
+			buf.WriteString(word.S)
+		}
+		fmt.Println(buf.String())
 	}
+
+	fmt.Println("************************* GetTextByRow() ****************************")
+
+	rows, _ := p.GetTextByRow()
 	for _, row := range rows {
 		buf.Reset()
 		for _, word := range row.Content {
 			buf.WriteString(word.S)
 		}
+		buf.WriteRune('\n')
 		fmt.Println(buf.String())
 
+	}
+
+	fmt.Println("************************ Coontent() *****************************")
+
+	c := p.Content()
+	for _, txt := range c.Text {
+		t.Log("x=", txt.X, ", y=", txt.Y, txt.S)
 	}
 }

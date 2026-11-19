@@ -527,6 +527,29 @@ func (v Value) Kind() ValueKind {
 	}
 }
 
+func (k ValueKind) String() string {
+	switch k {
+	default:
+		return "Null"
+	case Bool:
+		return "Bool"
+	case Integer:
+		return "Integer"
+	case Real:
+		return "Real"
+	case String:
+		return "String"
+	case Name:
+		return "Name"
+	case Dict:
+		return "Dict"
+	case Array:
+		return "Array"
+	case Stream:
+		return "Stream"
+	}
+}
+
 // String returns a textual representation of the value v.
 // Note that String is not the accessor for values with Kind() == String.
 // To access such values, see RawString, Text, and TextFromUTF16.

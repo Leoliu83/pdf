@@ -523,6 +523,7 @@ type Content struct {
 	Rect []Rect
 }
 
+// Graphics state
 type gstate struct {
 	Tc    float64
 	Tw    float64
@@ -705,6 +706,8 @@ type Row struct {
 // Rows is a list of rows
 type Rows []*Row
 
+// Deprecated:
+//
 // GetTextByRow returns the page's all text grouped by rows
 func (p Page) GetTextByRow() (result Rows, err error) {
 	defer recoverTo(&err, func() { result = Rows{} })
@@ -744,7 +747,7 @@ func (p Page) GetTextByRow() (result Rows, err error) {
 	}
 
 	sort.Slice(result, func(i, j int) bool {
-		return result[i].Position < result[j].Position
+		return result[i].Position > result[j].Position
 	})
 
 	return result, err
