@@ -6,8 +6,8 @@ import (
 )
 
 type TextBlock struct {
-	Position int64  // 排序基准位置（如行 Y 坐标、列 X 坐标、或段落起始 Y 坐标）
-	Content  []Text // 包含的文本片段
+	Position int64
+	Content  []Text
 }
 
 type TextBlockBuilder interface {
