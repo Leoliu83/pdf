@@ -307,3 +307,40 @@ func TestBuildPages(t *testing.T) {
 		}
 	}
 }
+
+func TestReadPage(t *testing.T) {
+	log.SetFlags(log.Lshortfile)
+	DebugOn = false
+	// f, r, err := Open("./examples/read_plain_text/pdf_test.pdf")
+	// f, r, err := Open("./examples/read_cm_matrix_text/cm_matrix_test.pdf")
+	// f, r, err := Open("./examples/read_cm_matrix_text/cm_matrix_cn_v2_test.pdf")
+	// f, r, err := Open("./examples/read_text_with_styles/pdf_test.pdf")
+	// f, r, err := Open("./examples/read_scrambled_order/scrambled_order_test.pdf")
+	// f, r, err := Open("./examples/read_scrambled_order/scrambled_x_and_y_test.pdf")
+	// f, r, err := Open("./examples/read_nested_pages/nested_pages_test.pdf")
+	// f, r, err := Open("./examples/read_nested_pages/inaccurate_count_test.pdf")
+	// f, r, err := Open("./examples/read_nested_pages/adobe_limit_test.pdf")
+	f, r, err := Open("/mnt/hgfs/mysql-refman-8.4-en.pdf")
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer f.Close()
+	pages := r.Pages()
+	for pageIndex := 1; pageIndex <= r.NumPage(); pageIndex++ {
+		p := pages.Page(pageIndex)
+		// p := r.r.Page(pageIndex)
+		if pageIndex%500 == 0 {
+			t.Log(pageIndex, p.V.Kind())
+		}
+		var buf bytes.Buffer
+		builder := NewRowBuilder()
+		p.WalkTextBlocks(builder)
+
+		for _, text := range builder.Build() {
+			for _, word := range text.Content {
+				buf.WriteString(word.S)
+			}
+		}
+		buf.Reset()
+	}
+}

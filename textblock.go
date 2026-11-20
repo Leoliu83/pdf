@@ -105,6 +105,7 @@ func (p Page) WalkTextBlocks(builder TextBlockBuilder) {
 	}
 
 	var gstack []gstate
+	var fonts map[string]*Font
 	Interpret(strm, func(stk *Stack, op string) {
 		args := popArgs(stk)
 		switch op {
@@ -191,12 +192,17 @@ func (p Page) WalkTextBlocks(builder TextBlockBuilder) {
 			if len(args) != 2 {
 				panic("bad TL")
 			}
-			fonts := p.fontCache()
+			if fonts == nil {
+				fonts = p.fontCache()
+			}
 			f := args[0].Name()
 			if font, ok := fonts[f]; ok {
 				g.Tf = *font
 			} else {
 				g.Tf = p.Font(f)
+				if fonts != nil {
+					fonts[f] = &g.Tf
+				}
 			}
 			enc = g.Tf.Encoder()
 			if enc == nil {
