@@ -226,17 +226,21 @@ func TestGetTextByRow(t *testing.T) {
 	// f, r, err := Open("./examples/read_cm_matrix_text/cm_matrix_cn_v2_test.pdf")
 	// f, r, err := Open("./examples/read_text_with_styles/pdf_test.pdf")
 	// f, r, err := Open("./examples/read_scrambled_order/scrambled_order_test.pdf")
-	f, r, err := Open("./examples/read_scrambled_order/scrambled_x_and_y_test.pdf")
+	// f, r, err := Open("./examples/read_scrambled_order/scrambled_x_and_y_test.pdf")
+	f, r, err := Open("./examples/read_nested_pages/inaccurate_count_test.pdf")
+	// f, r, err := Open("/mnt/hgfs/mysql-refman-8.4-en.pdf")
 	if err != nil {
 		t.Fatal(err)
 	}
 	defer f.Close()
 	// p := r.Page(31)
 	p := r.Page(2)
+	// p := r.Page(35)
 	var buf bytes.Buffer
 
 	fmt.Println("************************ RowBuilder() *****************************")
-
+	pages := r.Pages()
+	p = pages.Page(3)
 	builder := NewRowBuilder()
 	p.WalkTextBlocks(builder)
 	for _, block := range builder.Build() {
@@ -265,5 +269,41 @@ func TestGetTextByRow(t *testing.T) {
 	c := p.Content()
 	for _, txt := range c.Text {
 		t.Log("x=", txt.X, ", y=", txt.Y, txt.S)
+	}
+}
+
+func TestBuildPages(t *testing.T) {
+	log.SetFlags(log.Lshortfile)
+	DebugOn = true
+	// f, r, err := Open("./examples/read_plain_text/pdf_test.pdf")
+	// f, r, err := Open("./examples/read_cm_matrix_text/cm_matrix_test.pdf")
+	// f, r, err := Open("./examples/read_cm_matrix_text/cm_matrix_cn_v2_test.pdf")
+	// f, r, err := Open("./examples/read_text_with_styles/pdf_test.pdf")
+	// f, r, err := Open("./examples/read_scrambled_order/scrambled_order_test.pdf")
+	// f, r, err := Open("./examples/read_scrambled_order/scrambled_x_and_y_test.pdf")
+	// f, r, err := Open("./examples/read_nested_pages/nested_pages_test.pdf")
+	// f, r, err := Open("./examples/read_nested_pages/inaccurate_count_test.pdf")
+	f, r, err := Open("./examples/read_nested_pages/adobe_limit_test.pdf")
+	// f, r, err := Open("/mnt/hgfs/mysql-refman-8.4-en.pdf")
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer f.Close()
+	t.Log(r.Page(3))
+	pages := r.Pages()
+	// for i, page := range pages {
+	// 	t.Log(i, " : ", page.V.ptr)
+	// }
+	cnt := r.NumPage()
+	t.Log("NumPage: ", cnt, pages.NumPage())
+	for i := 1; i <= cnt; i++ {
+		e := r.Page(i).V.ptr.id
+		a := pages.Page(i).V.ptr.id
+		if i%500 == 0 || i == cnt {
+			t.Log("Check page ", i)
+		}
+		if e != a {
+			t.Fatalf("page (%d) value not matched, expect [%d] actual [%d]", i, e, a)
+		}
 	}
 }

@@ -84,9 +84,9 @@ func (r *Reader) GetPlainText() (reader io.Reader, err error) {
 // GetStyledTexts returns list all sentences in an array, that are included styles
 func (r *Reader) GetStyledTexts() (sentences []Text, err error) {
 	totalPage := r.NumPage()
+	pages := r.Pages()
 	for pageIndex := 1; pageIndex <= totalPage; pageIndex++ {
-		p := r.Page(pageIndex)
-
+		p := pages.Page(pageIndex)
 		if p.V.IsNull() || p.V.Key("Contents").Kind() == Null {
 			continue
 		}
@@ -1111,4 +1111,42 @@ func addOffset(s string, off uint32) string {
 		carry = carry>>8 + sum>>8
 	}
 	return string(b)
+}
+
+func (r *Reader) Pages() *Pages {
+	pages := &Pages{
+		num:   0,
+		pages: make([]Page, r.NumPage()),
+	}
+	pages.buildPages(r.Trailer().Key("Root").Key("Pages"))
+	return pages
+}
+
+type Pages struct {
+	num   int
+	pages []Page
+}
+
+func (p *Pages) Page(num int) Page {
+	if num < 1 || num > p.num {
+		return Page{}
+	}
+	return p.pages[num-1]
+}
+func (p *Pages) NumPage() int {
+	return p.num
+}
+
+func (p *Pages) buildPages(entry Value) {
+	kids := entry.Key("Kids")
+	for i := 0; i < kids.Len(); i++ {
+		kid := kids.Index(i)
+		switch kid.Key("Type").Name() {
+		case "Pages":
+			p.buildPages(kid)
+		case "Page":
+			p.pages[p.num] = Page{kid}
+			p.num++
+		}
+	}
 }
