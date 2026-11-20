@@ -185,12 +185,12 @@ func genHugePDF(filename string, totalPages int) error {
 }
 
 func main() {
-	_ = genNestedPDF("nested_pages_test.pdf")
-	_ = genInaccurateCountPDF("inaccurate_count_test.pdf")
+	// _ = genNestedPDF("./examples/read_nested_pages/nested_pages_test.pdf")
+	// _ = genInaccurateCountPDF("./examples/read_nested_pages/inaccurate_count_test.pdf")
 
 	start := time.Now()
 	// 默认生成 100 万页（约 130MB，2秒内完成）；想测 Adobe 极限可直接改为 8_380_000
-	if err := genHugePDF("adobe_limit_test.pdf", 1_000_000); err != nil {
+	if err := genHugePDF("./examples/read_nested_pages/adobe_limit_test.pdf", 1_000_000); err != nil {
 		panic(err)
 	}
 	fmt.Printf("全部测试 PDF 生成完成，耗时: %v\n", time.Since(start))
